@@ -7,16 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Initialized="Window_Initialized" Height="450" Width="800">
     <Grid>
-        
+
         <TabControl x:Name="zxc">
             <TabItem Header="Доходы">
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="223*"/>
+                        <ColumnDefinition Width="571*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="100"/>
                     </Grid.RowDefinitions>
                     <DataGrid x:Name="dg1" IsReadOnly="True"
-          AutoGenerateColumns="False" Grid.Row="0">
+          AutoGenerateColumns="False" Grid.Row="0" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Header="ID" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -69,19 +73,19 @@
 
                     </DataGrid>
                     <Button x:Name="add" Content="Добавить" Grid.Row="1"
-                            Margin="20,50,686,20" Click="add_click"/>
+                            Margin="20,50,115,20" Click="add_click"/>
                     <Button x:Name="izm" Content="Изменить" Grid.Row="1"
-        Margin="124,50,587,20" Click="izm_click"/>
+        Margin="124,50,16,20" Click="izm_click"/>
                     <Button x:Name="delete" Content="Удалить" Grid.Row="1"
-         Margin="221,50,499,20" Click="delete_click"/>
+         Margin="221,50,499,20" Click="delete_click" Grid.ColumnSpan="2"/>
                     <Button x:Name="filtr" Content="Фильтр" Grid.Row="1"
-        Margin="311,50,397,20" Click="filtr_click"/>
-                    <TextBox x:Name="filtrtb" Margin="402,50,230,20" Grid.Row="1"/>
+        Margin="88,50,397,20" Click="filtr_click" Grid.Column="1"/>
+                    <TextBox x:Name="filtrtb" Margin="179,50,230,20" Grid.Row="1" Grid.Column="1"/>
                     <Button x:Name="poisk" Content="Поиск" Grid.Row="1"
-         Margin="716,50,10,20" Click="poisk_click"/>
-                    <TextBox x:Name="poisktb" Margin="569,50,83,20" Grid.Row="1"/>
+         Margin="493,50,10,20" Click="poisk_click" Grid.Column="1"/>
+                    <TextBox x:Name="poisktb" Margin="346,50,83,20" Grid.Row="1" Grid.Column="1"/>
                 </Grid>
-                
+
             </TabItem>
             <TabItem Header="Расходы">
                 <Grid>
@@ -156,6 +160,71 @@ Margin="311,50,397,20" Click="filtr2_click"/>
                     <TextBox x:Name="poisktb2" Margin="569,50,83,20" Grid.Row="1"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Сбережения">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="dg4" IsReadOnly="True"
+  AutoGenerateColumns="False" Grid.Row="0">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="ID" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+
+                                        <TextBlock Text="{Binding IdSberezh}"/>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Тип Сбережения" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+
+                                        <TextBlock Text="{Binding ТипСбережения}"/>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Сбережения" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Сбережения1}"/>
+                                            <TextBlock Text=" руб."/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="На Что" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+
+                                        <TextBlock Text="{Binding НаЧто}"/>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                    <Button x:Name="add4" Content="Добавить" Grid.Row="1"
+                    Margin="20,50,686,20" Click="add4_click"/>
+                    <Button x:Name="izm4" Content="Изменить" Grid.Row="1"
+Margin="124,50,587,20" Click="izm4_click"/>
+                    <Button x:Name="delete4" Content="Удалить" Grid.Row="1"
+ Margin="221,50,499,20" Click="delete4_click"/>
+                    <Button x:Name="filtr4" Content="Фильтр" Grid.Row="1"
+Margin="311,50,397,20" Click="filtr4_click"/>
+                    <TextBox x:Name="filtrtb4" Margin="402,50,230,20" Grid.Row="1"/>
+                    <Button x:Name="poisk4" Content="Поиск" Grid.Row="1"
+ Margin="716,50,10,20" Click="poisk4_click"/>
+                    <TextBox x:Name="poisktb4" Margin="569,50,83,20" Grid.Row="1"/>
+                </Grid>
+            </TabItem>
             <TabItem Header="Информация">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -165,47 +234,45 @@ Margin="311,50,397,20" Click="filtr2_click"/>
                     <DataGrid x:Name="dg3" IsReadOnly="True"
   AutoGenerateColumns="False" Grid.Row="0">
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="ID дохода" Width="*">
+                            <DataGridTemplateColumn Header="Сумма доходов" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
 
-                                        <TextBlock Text="{Binding IdDohod}"/>
+                                        <TextBlock Text="{Binding СуммаДохода}"/>
 
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Id Расхода" Width="*">
+                            <DataGridTemplateColumn Header="Сумма расходов" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
 
-                                        <TextBlock Text="{Binding IdRashod}"/>
-                                           
-                                        
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Разница" Width="*">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
+                                        <TextBlock Text="{Binding СуммаРасходов}"/>
 
-                                        <TextBlock Text="{Binding Raznisa}"/>
 
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            
+                            <DataGridTemplateColumn Header="Сумма сбережений" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+
+                                        <TextBlock Text="{Binding СуммаСбережений}"/>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
                         </DataGrid.Columns>
 
                     </DataGrid>
-                   
+
                     <Button x:Name="filtr3" Content="Фильтр" Grid.Row="1"
 Margin="10,50,682,20" Click="filtr3_click"/>
                     <Button x:Name="delete3" Content="Удалить" Grid.Row="1"
 Margin="346,50,374,20" Click="delete3_click"/>
                     <TextBox x:Name="filtrtb3" Margin="117,50,518,20" Grid.Row="1"/>
-                    <Button x:Name="poisk3" Content="Поиск" Grid.Row="1"
- Margin="664,50,20,20" Click="poisk3_click"/>
-                    <TextBox x:Name="poisktb3" Margin="496,50,135,20" Grid.Row="1"/>
+
                 </Grid>
             </TabItem>
         </TabControl>

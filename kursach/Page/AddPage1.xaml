@@ -1,0 +1,47 @@
+﻿<Window x:Class="kursach.Page.AddPage1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:kursach.Page"
+      mc:Ignorable="d" 
+         Height="450" Width="450"
+       Title="Добавить" ResizeMode="NoResize" x:Name="AddPagesDannie2"
+    WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
+    <Grid Margin="94,0">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+           Content="Тип Сбережения"/>
+        <TextBox Grid.Row="1" x:Name="tbnamedohod" 
+             HorizontalAlignment="Stretch" VerticalAlignment="Center"
+             Text="{Binding Path=ТипСбережения}"/>
+        <Label Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"
+           Content="Сбережения"/>
+        <TextBox Grid.Row="3" x:Name="tbsumdohod" HorizontalAlignment="Stretch"
+              VerticalAlignment="Center" Text="{Binding Path=Сбережения1}"/>
+        <Label Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"
+    Content="На Что"/>
+        <TextBox Grid.Row="5" x:Name="tbkategdohod" HorizontalAlignment="Stretch"
+       VerticalAlignment="Center" Text="{Binding Path=НаЧто}"/>
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" x:Name="btnadd" Click="btnadd_click" Content="Добавить"
+                Width="75" Height="25"/>
+            <Button Grid.Column="0" x:Name="btnotmena" Click="btnotm_click" Content="Отмена"
+     Width="75" Height="25"/>
+        </Grid>
+    </Grid>
+</Window>

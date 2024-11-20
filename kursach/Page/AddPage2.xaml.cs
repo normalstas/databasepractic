@@ -26,10 +26,11 @@ namespace kursach.Page
 		}
 		Доходы _dohod;
 		KursachContext _db = new KursachContext();
-		DateOnly dateOnly = new DateOnly();
+		
 
 		private void btnotm_click(object sender, RoutedEventArgs e)
 		{
+			Data.dohnew = false;
 			Close();
 		}
 
@@ -76,10 +77,12 @@ namespace kursach.Page
 					_dohod.КатегорияДохода = tbkategdohod.Text;
 					_db.Доходыs.Add(_dohod);
 					_db.SaveChanges();
+					Data.dohnew = true;
 				}
 				else
 				{
 					_db.SaveChanges();
+					Data.dohnew = true;
 				}
 				Close();
 			}

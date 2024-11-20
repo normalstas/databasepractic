@@ -14,6 +14,4 @@ public partial class Расходы
     public DateOnly ДатаРасхода { get; set; }
 
     public string КатегорияРасхода { get; set; } = null!;
-
-    public virtual ICollection<Info> Infos { get; set; } = new List<Info>();
 }

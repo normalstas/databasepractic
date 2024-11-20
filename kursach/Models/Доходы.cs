@@ -15,6 +15,5 @@ public partial class Доходы
 
     public string? КатегорияДохода { get; set; }
 
-
     public virtual ICollection<Info> Infos { get; set; } = new List<Info>();
 }

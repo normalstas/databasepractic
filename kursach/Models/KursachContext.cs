@@ -25,6 +25,8 @@ public partial class KursachContext : DbContext
 
     public virtual DbSet<Расходы> Расходыs { get; set; }
 
+    public virtual DbSet<Сбережения> Сбереженияs { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=localhost; Database=kursach; Trusted_Connection=True; MultipleActiveResultSets=true; TrustServerCertificate=true;encrypt=false");
@@ -37,15 +39,17 @@ public partial class KursachContext : DbContext
 
             entity.ToTable("Info");
 
+            entity.Property(e => e.СуммаДохода).HasColumnName("Сумма Дохода");
+            entity.Property(e => e.СуммаРасходов).HasColumnName("Сумма Расходов");
+            entity.Property(e => e.СуммаСбережений).HasColumnName("Сумма Сбережений");
+
             entity.HasOne(d => d.IdDohodNavigation).WithMany(p => p.Infos)
                 .HasForeignKey(d => d.IdDohod)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Info_Доходы");
 
-            entity.HasOne(d => d.IdRashodNavigation).WithMany(p => p.Infos)
-                .HasForeignKey(d => d.IdRashod)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Info_Расходы");
+            entity.HasOne(d => d.IdSberezhNavigation).WithMany(p => p.Infos)
+                .HasForeignKey(d => d.IdSberezh)
+                .HasConstraintName("FK_Info_Сбережения");
         });
 
         modelBuilder.Entity<Role>(entity =>
@@ -113,6 +117,22 @@ public partial class KursachContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("Название расхода");
             entity.Property(e => e.СуммаРасхода).HasColumnName("Сумма расхода");
+        });
+
+        modelBuilder.Entity<Сбережения>(entity =>
+        {
+            entity.HasKey(e => e.IdSberezh);
+
+            entity.ToTable("Сбережения");
+
+            entity.Property(e => e.IdSberezh).HasColumnName("idSberezh");
+            entity.Property(e => e.НаЧто)
+                .HasMaxLength(50)
+                .HasColumnName("на что");
+            entity.Property(e => e.Сбережения1).HasColumnName("сбережения");
+            entity.Property(e => e.ТипСбережения)
+                .HasMaxLength(50)
+                .HasColumnName("Тип сбережения");
         });
 
         OnModelCreatingPartial(modelBuilder);

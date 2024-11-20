@@ -33,6 +33,7 @@ namespace kursach
 
 		private void btnotm_click(object sender, RoutedEventArgs e)
 		{
+			Data.razhnew = false;
 			Close();
 		}
 
@@ -69,7 +70,7 @@ namespace kursach
 
 			try
 			{
-				if (Data.dohod == null)
+				if (Data.rashod == null)
 				{
 					_rashod.ДатаРасхода = DateOnly.FromDateTime(daterashod.SelectedDate.Value);
 					_rashod.НазваниеРасхода = tbnamerashod.Text;
@@ -77,10 +78,12 @@ namespace kursach
 					_rashod.КатегорияРасхода = tbkategrashod.Text;
 					_db.Расходыs.Add(_rashod);
 					_db.SaveChanges();
+					Data.razhnew = true;
 				}
 				else
 				{
 					_db.SaveChanges();
+					Data.razhnew = true;
 				}
 				Close();
 			}
